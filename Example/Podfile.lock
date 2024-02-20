@@ -1,0 +1,16 @@
+PODS:
+  - Keystore-iOS (1.0.0)
+
+DEPENDENCIES:
+  - Keystore-iOS (from `../`)
+
+EXTERNAL SOURCES:
+  Keystore-iOS:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Keystore-iOS: 57d88fd6cfd11c7f70d63d9f443c848aed23ebaa
+
+PODFILE CHECKSUM: 70c0c4c8e7332309ca485eafebf59914e8d86459
+
+COCOAPODS: 1.15.2
