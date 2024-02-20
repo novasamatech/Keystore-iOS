@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '15.0'
+
+target 'Keystore-iOS_Example' do
+  pod 'Keystore-iOS', :path => '../'
+
+  target 'Keystore-iOS_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
