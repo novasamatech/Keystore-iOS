@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'Keystore-iOS'
-  s.version          = '1.0.0'
+  s.version          = '1.0.1'
   s.summary          = 'A library to wrap logic related to keychain and user defaults.'
 
   s.homepage         = 'https://github.com/novasamatech/Keystore-iOS'
