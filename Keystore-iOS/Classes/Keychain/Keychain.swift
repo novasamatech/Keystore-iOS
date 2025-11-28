@@ -1,9 +1,27 @@
 import Foundation
 import Security
 
-public class Keychain: KeystoreProtocol {
-    public init() {}
+public enum KeychainAccessLevel {
+    case always
+    case whenUnlocked
+}
 
+public class Keychain: KeystoreProtocol {
+    let rawAccessLevel: String
+    
+    public init(rawAccessLevel: String) {
+        self.rawAccessLevel = rawAccessLevel
+    }
+    
+    public init(accessLevel: KeychainAccessLevel) {
+        switch accessLevel {
+        case .always:
+            rawAccessLevel = kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly as String
+        case .whenUnlocked:
+            rawAccessLevel = kSecAttrAccessibleWhenUnlockedThisDeviceOnly as String
+        }
+    }
+    
     public func addKey(_ key: Data, with identifier: String) throws {
         guard let applicationTag = identifier.data(using: String.Encoding.utf8) else {
             throw KeystoreError.invalidIdentifierFormat
@@ -12,7 +30,7 @@ public class Keychain: KeystoreProtocol {
         let attributes: [String: Any] = [
             kSecClass as String: kSecClassKey,
             kSecAttrApplicationTag as String: applicationTag,
-            kSecAttrAccessible as String: kSecAttrAccessibleWhenUnlockedThisDeviceOnly,
+            kSecAttrAccessible as String: rawAccessLevel,
             kSecValueData as String: key
         ]
 
