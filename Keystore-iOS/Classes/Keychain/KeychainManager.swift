@@ -7,7 +7,7 @@ public class KeychainManager {
     fileprivate lazy var concurentQueue: DispatchQueue = DispatchQueue(label: KeychainManager.queueLabel,
                                                                    qos: .default,
                                                                    attributes: .concurrent)
-    fileprivate lazy var keystore: Keychain = Keychain()
+    fileprivate lazy var keystore: Keychain = Keychain(accessLevel: .whenUnlocked)
 
     private init() {}
 }
